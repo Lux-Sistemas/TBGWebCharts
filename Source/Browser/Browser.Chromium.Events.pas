@@ -32,7 +32,7 @@ type
       user_gesture, isRedirect: Boolean; out Result: Boolean);
     // {$ENDIF}
     procedure Chromium_OnBeforePopup(Sender: TObject; const Browser: ICefBrowser;
-      const frame: ICefFrame; const targetUrl, targetFrameName: ustring;
+      const frame: ICefFrame; popup_id: Integer; const targetUrl, targetFrameName: ustring;
       targetDisposition: TCefWindowOpenDisposition; userGesture: Boolean;
       const popupFeatures: TCefPopupFeatures; var windowInfo: TCefWindowInfo;
       var client: ICefClient; var settings: TCefBrowserSettings;
@@ -114,7 +114,7 @@ end;
 
 procedure TChromiumEvents.Chromium_OnBeforePopup(Sender: TObject;
   const Browser: ICefBrowser; const frame: ICefFrame;
-  const targetUrl, targetFrameName: ustring; targetDisposition: TCefWindowOpenDisposition;
+  popup_id: Integer; const targetUrl, targetFrameName: ustring; targetDisposition: TCefWindowOpenDisposition;
   userGesture: Boolean; const popupFeatures: TCefPopupFeatures;
   var windowInfo: TCefWindowInfo; var client: ICefClient;
   var settings: TCefBrowserSettings; var extra_info: ICefDictionaryValue;

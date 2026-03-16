@@ -13,6 +13,7 @@ type
       FTitle : string;
       FEnabled : string;
       FHideZeroValues : string;
+      FSumDataSetValuesEnabled: Boolean;
     public
       constructor Create(Parent : T);
       destructor Destroy; override;
@@ -29,6 +30,7 @@ type
       function Intersect(Value : Boolean) : iModelHTMLTooltip<T>;
       function DisplayTitle(Value : Boolean) : iModelHTMLTooltip<T>;
       function HideZeroValues(Value : boolean) : iModelHTMLTooltip<T>;
+      function SumDataSetValues(Value : Boolean) : iModelHTMLTooltip<T>;
       function Result : String;
       function &End : T;
   end;
@@ -124,6 +126,7 @@ begin
     FParent := Parent;
   {$IFEND}
   FToolTipValue := 'tooltipItem.value';
+  FSumDataSetValuesEnabled := False;
 end;
 destructor TModelHTMLChartsTooltip<T>.Destroy;
 begin
@@ -147,6 +150,7 @@ class function TModelHTMLChartsTooltip<T>.New(Parent : T): iModelHTMLTooltip<T>;
 begin
   Result := Self.Create(Parent);
 end;
+
 function TModelHTMLChartsTooltip<T>.Result: String;
 begin
   Result := '';
@@ -154,20 +158,40 @@ begin
   Result := Result + FEnabled;
   Result := Result + FInteractionMode;
   Result := Result + FIntersect;
-  Result := Result + FHideZeroValues;
   Result := Result + 'callbacks: {';
-  Result := Result + FTitle;
+  if FTitle <> '' then
+    Result := Result + FTitle;
   Result := Result + 'label: function(tooltipItem, data) {';
   Result := Result + 'numeral.locale(''pt-br'');';
   //Result := Result + '  	return numeral(data['+QuotedStr('datasets')+'][0]['+QuotedStr('data')+'][tooltipItem['+QuotedStr('index')+']]).format('+QuotedStr(FFormat)+');';
-//  Result := Result + '    return numeral(data['+QuotedStr('datasets')+'][tooltipItem.datasetIndex]['+QuotedStr('data')+'][tooltipItem['+QuotedStr('index')+']]).format('+QuotedStr(FFormat)+');';
-  Result := Result + 'var valueNumber = numeral();';
-  Result := Result + 'valueNumber.set(' + FToolTipValue + ');';
+  //  Result := Result + '    return numeral(data['+QuotedStr('datasets')+'][tooltipItem.datasetIndex]['+QuotedStr('data')+'][tooltipItem['+QuotedStr('index')+']]).format('+QuotedStr(FFormat)+');';
+  Result := Result + 'var valueNumber = numeral(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);';
   Result := Result + 'return valueNumber.format('+QuotedStr(FFormat)+');';
-  Result := Result + '}';
-  Result := Result + '}';
-  Result := Result + '},';
+  Result := Result + '},'; // Fechando o label corretamente
+
+  // Adicionando o footer apenas se a flag estiver habilitada
+  if FSumDataSetValuesEnabled then
+  begin
+    Result := Result + 'footer: function(tooltipItems, data) {';
+    Result := Result + 'var total = 0;';
+    Result := Result + 'tooltipItems.forEach(function(tooltipItem) {';
+    Result := Result + '  total += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];';
+    Result := Result + '});';
+    Result := Result + 'return "Total: " + numeral(total).format(' + QuotedStr(FFormat) + ');';
+    Result := Result + '},';
+  end;
+
+  Result := Result + '},'; // Fechando os callbacks
+  Result := Result + '},'; // Fechando os tooltips
 end;
+
+function TModelHTMLChartsTooltip<T>.SumDataSetValues(
+  Value: Boolean): iModelHTMLTooltip<T>;
+begin
+  FSumDataSetValuesEnabled := Value;
+  Result := Self;
+end;
+
 function TModelHTMLChartsTooltip<T>.ToolTipNoScales : iModelHTMLTooltip<T>;
 begin
   Result := Self;

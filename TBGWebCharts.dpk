@@ -35,7 +35,8 @@ requires
   fmx,
   IndySystem,
   IndyProtocols,
-  IndyCore;
+  IndyCore,
+  CEF4DelphiVCLRTL;
 
 contains
   Alerts.Classes in 'Source\Alerts.Classes.pas',
@@ -172,7 +173,13 @@ contains
   Table.Features in 'Source\Table\Table.Features.pas',
   Table.Options in 'Source\Table\Table.Options.pas',
   Table in 'Source\Table\Table.pas',
-  Browser.VCL.WebBrowser in 'Source\Browser\Browser.VCL.WebBrowser.pas';
+  Browser.VCL.WebBrowser in 'Source\Browser\Browser.VCL.WebBrowser.pas',
+  Browser.VCL.Chromium in 'Source\Browser.VCL.Chromium.pas',
+  Browser.Chromium.Events in 'Source\Browser.Chromium.Events.pas',
+  Browser.Chromium.Resources.JSCallback in 'Source\Browser.Chromium.Resources.JSCallback.pas',
+  Browser.Chromium.Resources.Pages in 'Source\Browser.Chromium.Resources.Pages.pas',
+  Browser.Chromium.Resources in 'Source\Browser.Chromium.Resources.pas',
+  Chromium.CustomResourceHandler in 'Source\Chromium.CustomResourceHandler.pas';
 
 end.
 

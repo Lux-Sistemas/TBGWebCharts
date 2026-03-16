@@ -836,6 +836,7 @@ type
     function InteractionModeX: IModelHTMLTooltip<T>;
     function InteractionModeY: IModelHTMLTooltip<T>;
     function Intersect(Value: Boolean): IModelHTMLTooltip<T>;
+    function SumDataSetValues(Value : Boolean) : iModelHTMLTooltip<T>;
     function Result: string;
     function ToolTipNoScales: IModelHTMLTooltip<T>;
   end;
