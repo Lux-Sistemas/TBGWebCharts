@@ -174,16 +174,11 @@ contains
   Table.Options in 'Source\Table\Table.Options.pas',
   Table in 'Source\Table\Table.pas',
   Browser.VCL.WebBrowser in 'Source\Browser\Browser.VCL.WebBrowser.pas',
-  Browser.VCL.Chromium in 'Source\Browser.VCL.Chromium.pas',
-  Browser.Chromium.Events in 'Source\Browser.Chromium.Events.pas',
-  Browser.Chromium.Resources.JSCallback in 'Source\Browser.Chromium.Resources.JSCallback.pas',
-  Browser.Chromium.Resources.Pages in 'Source\Browser.Chromium.Resources.Pages.pas',
-  Browser.Chromium.Resources in 'Source\Browser.Chromium.Resources.pas',
+  Browser.VCL.Chromium in 'Source\Browser\Browser.VCL.Chromium.pas',
+  Browser.Chromium.Events in 'Source\Browser\Browser.Chromium.Events.pas',
+  Browser.Chromium.Resources.JSCallback in 'Source\Browser\Browser.Chromium.Resources.JSCallback.pas',
+  Browser.Chromium.Resources.Pages in 'Source\Browser\Browser.Chromium.Resources.Pages.pas',
+  Browser.Chromium.Resources in 'Source\Browser\Browser.Chromium.Resources.pas',
   Chromium.CustomResourceHandler in 'Source\Chromium.CustomResourceHandler.pas';
 
 end.
-
-
-
-
-

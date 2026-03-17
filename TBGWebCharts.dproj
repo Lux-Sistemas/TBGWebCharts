@@ -232,12 +232,13 @@
         <DCCReference Include="Source\Table\Table.Options.pas"/>
         <DCCReference Include="Source\Table\Table.pas"/>
         <DCCReference Include="Source\Browser\Browser.VCL.WebBrowser.pas"/>
-        <DCCReference Include="Source\Browser.VCL.Chromium.pas"/>
-        <DCCReference Include="Source\Browser.Chromium.Events.pas"/>
+        <DCCReference Include="Source\Browser\Browser.VCL.Chromium.pas"/>
+        <DCCReference Include="Source\Browser\Browser.Chromium.Events.pas"/>
         <DCCReference Include="Source\Browser.Chromium.Resources.JSCallback.pas"/>
-        <DCCReference Include="Source\Browser.Chromium.Resources.Pages.pas"/>
-        <DCCReference Include="Source\Browser.Chromium.Resources.pas"/>
+        <DCCReference Include="Source\Browser\Browser.Chromium.Resources.Pages.pas"/>
+        <DCCReference Include="Source\Browser\Browser.Chromium.Resources.pas"/>
         <DCCReference Include="Source\Chromium.CustomResourceHandler.pas"/>
+        <None Include="Source\Browser\cef.inc"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
